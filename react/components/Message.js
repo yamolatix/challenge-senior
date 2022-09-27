@@ -1,18 +1,18 @@
 import React from "react";
 
-export default function Message() {
+export default function Message({ fullMessage, markAsRead }) {
   return (
-    <div>
+    <div onClick={() => markAsRead(fullMessage.id)}>
       <h1>
-        From: <span></span>
+        From: <span>{fullMessage.from.email}</span>
       </h1>
       <h2>
-        To: <span></span>
+        To: <span>{fullMessage.to.email}</span>
       </h2>
       <h3>
-        Subject: <span></span>
+        Subject: <span>{fullMessage.subject}</span>
       </h3>
-      <p></p>
+      <p>{fullMessage.body}</p>
     </div>
   );
 }

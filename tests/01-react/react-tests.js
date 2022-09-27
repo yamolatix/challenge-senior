@@ -58,25 +58,25 @@ describe("▒▒▒ Frontend tests ▒▒▒", function () {
       // Estos tests son relativamente simples - todo lo que pedimos es que
       // hagas es completar cada JSX tag (h1, h2, etc.) con el string HTML mostrado.
 
-      xit('incluye el "FROM" como un h1', () => {
+      it('incluye el "FROM" como un h1', () => {
         expect(messageWrapper.find("h1")).to.have.html(
           "<h1>From: <span>hagrid@hogwarts.com</span></h1>"
         );
       });
 
-      xit('incluye el "TO" como un h2', () => {
+      it('incluye el "TO" como un h2', () => {
         expect(messageWrapper.find("h2")).to.have.html(
           "<h2>To: <span>harry@potter.com</span></h2>"
         );
       });
 
-      xit('incluye el "SUBJECT" como un h3', () => {
+      it('incluye el "SUBJECT" como un h3', () => {
         expect(messageWrapper.find("h3")).to.have.html(
           "<h3>Subject: <span>re: New letter!</span></h3>"
         );
       });
 
-      xit('incluye el "BODY" como un p', () => {
+      it('incluye el "BODY" como un p', () => {
         expect(messageWrapper.find("p")).to.have.html(
           "<p>You&#39;re a Wizard, Harry!</p>"
         );
@@ -88,7 +88,7 @@ describe("▒▒▒ Frontend tests ▒▒▒", function () {
       // debería variar basado en la data pasada. ¿De dónde proviene esa data?
       // ¿Cómo obtenes acceso a él? Volve al `beforeEach` block para verlo.
 
-      xit("los valores no estan _harcodeados_", () => {
+      it("los valores no estan _harcodeados_", () => {
         const aDifferentMessage = {
           id: 6,
           from: { email: "argusfilch@hogwarts.com" },
@@ -133,7 +133,7 @@ describe("▒▒▒ Frontend tests ▒▒▒", function () {
       // como agregar un click handler que llame a la función con los argumentos
       // específicos
 
-      xit("cuando clickeamos, invoca una función pasada como la propiedad markAsRead con el id del mensaje", () => {
+      it("cuando clickeamos, invoca una función pasada como la propiedad markAsRead con el id del mensaje", () => {
         // La función pasada al `markAsRead` no debería ser llamada inmediatamente.
         expect(markAsReadSpy).not.to.have.been.called;
 
@@ -188,7 +188,7 @@ describe("▒▒▒ Frontend tests ▒▒▒", function () {
     describe("contenido visual", () => {
       // ¿Cómo definís el estado inicial de un componente de React?
 
-      xit("empieza con un estado inicial de un arreglo vacío de mensajes", () => {
+      it("empieza con un estado inicial de un arreglo vacío de mensajes", () => {
         /**
          * IMPORTANTE: para que los test funcionen necesitaras usar la sintaxis React.useState()
          *
@@ -201,7 +201,7 @@ describe("▒▒▒ Frontend tests ▒▒▒", function () {
         expect(state.value).to.be.deep.equal([]);
       });
       // No te preocupes sobre `markAsRead`, Esto no corresponde a este a estos tests
-      xit("esta compuesto de componentes <Message /> (NOTA: no es necesario un prop `markAsRead`)  basado en que es colocado en el estado", () => {
+      it("esta compuesto de componentes <Message /> (NOTA: no es necesario un prop `markAsRead`)  basado en que es colocado en el estado", () => {
         // Esto va a alterar el *estado local* del componente que fue simulado mas arriba.
         state.value = randomMessages;
         inboxWrapper.setProps(); // Fuerza al componente a renderear nuevamente.
@@ -222,7 +222,7 @@ describe("▒▒▒ Frontend tests ▒▒▒", function () {
         expect(inboxWrapper.find(Message)).to.have.length(6);
       });
 
-      xit("cada componente <Message /> tiene una property `key`", () => {
+      it("cada componente <Message /> tiene una property `key`", () => {
         state.value = randomMessages;
         inboxWrapper.setProps();
 
@@ -251,7 +251,7 @@ describe("▒▒▒ Frontend tests ▒▒▒", function () {
     // pase, el componente debería 1) invocar el prop `onSend`, y 2) pasar
     // el estado actual del componente.
 
-    xit("Invoca la función `onSend` pasando un objeto con los estados iniciales cuando el formulario se submitea", () => {
+    it("Invoca la función `onSend` pasando un objeto con los estados iniciales cuando el formulario se submitea", () => {
       // El formulario deberia tener un evento `onSubmit` asociado a la prop `onSend`.
       expect(newMessageFormWrapper.find("form").prop("onSubmit")).to.be.a(
         "function"
@@ -271,7 +271,7 @@ describe("▒▒▒ Frontend tests ▒▒▒", function () {
       });
     });
 
-    xit("Setea un nuevo estado local cuando el input `recipient` cambia", () => {
+    it("Setea un nuevo estado local cuando el input `recipient` cambia", () => {
       // El test spec esta buscando un campo del form específico
       const recipientInput = newMessageFormWrapper.find("#recipient-field");
 
@@ -300,7 +300,7 @@ describe("▒▒▒ Frontend tests ▒▒▒", function () {
       });
     });
 
-    xit("Soporta cambios en multiples inputs", () => {
+    it("Soporta cambios en multiples inputs", () => {
       const recipientInput = newMessageFormWrapper.find("#recipient-field");
       const subjectInput = newMessageFormWrapper.find("#subject-field");
       const bodyInput = newMessageFormWrapper.find("#body-field");
